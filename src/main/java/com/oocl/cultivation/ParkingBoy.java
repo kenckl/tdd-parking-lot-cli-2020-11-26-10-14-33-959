@@ -8,7 +8,7 @@ public class ParkingBoy {
         this.parkingLot = parkingLot;
     }
 
-    public Ticket park(Car car){
+    public Ticket parkCar(Car car){
         return parkingLot.park(car);
     }
 
