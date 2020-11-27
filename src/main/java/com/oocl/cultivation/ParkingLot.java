@@ -5,7 +5,14 @@ import java.util.Map;
 
 public class ParkingLot {
 
+    private int maxCapacity = 10;
     private final Map<Ticket, Car> ticketCarMapping = new HashMap<>();
+
+    public ParkingLot(){ }
+
+    public ParkingLot(int maxCapacity){
+        this.maxCapacity = maxCapacity;
+    }
 
     public Ticket park(Car car){
         Ticket ticket = new Ticket();
