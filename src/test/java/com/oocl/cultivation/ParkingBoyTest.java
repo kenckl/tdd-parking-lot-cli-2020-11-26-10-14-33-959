@@ -49,6 +49,5 @@ class ParkingBoyTest {
         assertNotNull(ticket2);
     }
 
-    
 
 }
