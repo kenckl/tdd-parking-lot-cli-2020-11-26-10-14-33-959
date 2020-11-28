@@ -12,10 +12,10 @@ public class ParkingBoy {
     }
 
     public Ticket parkCar(Car car) throws NotEnoughPositionException{
-        return this.parkingLot.park(car);
+        return this.parkingLots.park(car);
     }
 
     public Car fetchCar(Ticket ticket) throws UnrecognizedParkingTicketException{
-        return this.parkingLot.fetch(ticket);
+        return this.parkingLots.fetch(ticket);
     }
 }
