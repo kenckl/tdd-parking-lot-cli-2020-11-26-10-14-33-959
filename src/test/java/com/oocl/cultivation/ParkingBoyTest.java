@@ -12,7 +12,7 @@ class ParkingBoyTest {
     void should_return_parking_ticket_when_parking_given_parking_boy_park() throws NotEnoughPositionException{
         //GIVEN
         Car car = new Car();
-        ParkingLot parkingLot = new ParkingLot(10);
+        List<ParkingLot> parkingLot = new ArrayList<>();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
 
         //WHEN
@@ -26,7 +26,7 @@ class ParkingBoyTest {
     void should_return_correct_car_when_fetch_car_given_parking_ticket() throws NotEnoughPositionException, UnrecognizedParkingTicketException{
         //GIVEN
         Car car = new Car();
-        ParkingLot parkingLot = new ParkingLot(10);
+        List<ParkingLot> parkingLot = new ArrayList<>();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Ticket ticket = parkingBoy.parkCar(car);
 
@@ -42,7 +42,7 @@ class ParkingBoyTest {
         //GIVEN
         Car car1 = new Car();
         Car car2 = new Car();
-        ParkingLot parkingLot = new ParkingLot(10);
+        List<ParkingLot> parkingLot = new ArrayList<>();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
 
         //WHEN
@@ -58,7 +58,7 @@ class ParkingBoyTest {
     void should_return_UnrecognizedParkingTicketException_when_fetch_car_given_parking_lot_car_reused_ticket() throws UnrecognizedParkingTicketException, NotEnoughPositionException{
         //GIVEN
         Car car = new Car();
-        ParkingLot parkingLot = new ParkingLot(1);
+        List<ParkingLot> parkingLot = new ArrayList<>();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Ticket ticket = parkingBoy.parkCar(car);
 
@@ -108,7 +108,7 @@ class ParkingBoyTest {
     @Test
     void should_return_NotEnoughPostionExceptionn_when_parking_given_full_capacity() throws NotEnoughPositionException{
         //GIVEN
-        ParkingLot parkingLot = new ParkingLot(1);
+        List<ParkingLot> parkingLot = new ArrayList<>();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Car car = new Car();
 
