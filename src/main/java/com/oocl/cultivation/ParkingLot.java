@@ -31,10 +31,13 @@ public class ParkingLot {
         return ticket;
     }
 
-    public Car fetch(Ticket ticket) {
-        Car car = ticketCarMapping.get(ticket);
-        ticketCarMapping.remove(ticket);
-        return car;
+    public Car fetch(Ticket ticket) throws UnrecognizedParkingTicketException {
+        if (ticketCarMapping.containsKey(ticket)){
+            Car car = ticketCarMapping.get(ticket);
+            ticketCarMapping.remove(ticket);
+            return car;
+        }
+        throw new UnrecognizedParkingTicketException();
     }
 
     private boolean hasCapacity() {

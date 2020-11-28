@@ -19,7 +19,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_correct_car_when_fetch_car_given_parking_ticket() throws NotEnoughPositionException{
+    void should_return_correct_car_when_fetch_car_given_parking_ticket() throws NotEnoughPositionException, UnrecognizedParkingTicketException{
         //GIVEN
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -85,7 +85,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_null_when_fetching_given_parking_ticket_not_parked_in_parking_lot() throws NotEnoughPositionException{
+    void should_return_null_when_fetching_given_parking_ticket_not_parked_in_parking_lot() throws NotEnoughPositionException, UnrecognizedParkingTicketException{
         //GIVEN
         ParkingLot parkingLot = new ParkingLot(10);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
