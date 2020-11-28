@@ -22,4 +22,21 @@ public class SmartParkingBoyTest {
         //THEN
         assertNotNull(ticket);
     }
+
+    @Test
+    public void should_return_correct_car_when_fetching_given_correct_ticket(){
+        //GIVEN
+        Car car = new Car();
+        List<ParkingLot> parkingLot = new ArrayList<>();
+        parkingLot.add(new ParkingLot(10));
+        ParkingBoy parkingBoy = new SmartParkingBoy(parkingLot);
+        Ticket ticket = parkingBoy.park(car);
+
+        //WHEN
+        Car actualCar = parkingBoy.fetchCar(ticket);
+
+        //THEN
+        assertSame(actualCar, car);
+    }
+
 }
