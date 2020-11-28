@@ -51,6 +51,21 @@ class ParkingBoyTest {
     }
 
     @Test
+    void should_return_no_car_when_fetch_car_given_parking_lot_car_reused_ticket() throws NotEnoughPositionException{
+        //GIVEN
+        Car car1 = new Car();
+        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Ticket ticket1 = parkingBoy.parkCar(car1);
+
+        //WHEN
+        Car actualCar = parkingBoy.fetchCar(ticket1);
+
+        //THEN
+        assertNull(ticket1);
+    }
+
+    @Test
     void should_return_only_one_ticket_when_parking_multiple_cars_given_parking_lot_with_one_capacity() throws NotEnoughPositionException{
         //GIVEN
         Car car1 = new Car();
