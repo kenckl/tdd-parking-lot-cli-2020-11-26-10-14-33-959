@@ -53,4 +53,8 @@ public class ParkingBoy {
         return parkingLots.stream().anyMatch(parkingLots ->
                 parkingLots.getMapping().containsKey(ticket));
     }
+
+    public List<ParkingLot> getParkingLots(){
+        return parkingLots;
+    }
 }
