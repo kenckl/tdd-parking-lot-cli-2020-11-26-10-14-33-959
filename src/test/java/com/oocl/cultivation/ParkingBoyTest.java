@@ -34,15 +34,16 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_multiple_cars_when_parking_multiple_cars_given_parking_lot_with_multiple_capacity() {
+    void should_return_multiple_tickets_when_parking_multiple_cars_given_parking_lot_with_multiple_capacity() {
         //GIVEN
         Car car1 = new Car();
         Car car2 = new Car();
         ParkingLot parkingLot = new ParkingLot(10);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
 
         //WHEN
-        Ticket ticket1 = parkingLot.park(car1);
-        Ticket ticket2 = parkingLot.park(car2);
+        Ticket ticket1 = parkingBoy.parkCar(car1);
+        Ticket ticket2 = parkingBoy.parkCar(car2);
 
         //THEN
         assertNotNull(ticket1);
