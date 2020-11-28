@@ -57,12 +57,13 @@ class ParkingBoyTest {
         ParkingLot parkingLot = new ParkingLot(1);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Ticket ticket1 = parkingBoy.parkCar(car1);
+        Ticket usedticket = new Ticket();
 
         //WHEN
-        Car actualCar = parkingBoy.fetchCar(ticket1);
+        Car actualCar = parkingBoy.fetchCar(usedticket);
 
         //THEN
-        assertNull(ticket1);
+        assertNull(actualCar);
     }
 
     @Test
