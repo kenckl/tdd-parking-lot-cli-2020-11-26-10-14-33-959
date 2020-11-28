@@ -1,12 +1,14 @@
 package com.oocl.cultivation;
+
+import java.util.List;
 import com.oocl.cultivation.NotEnoughPositionException;
 
 public class ParkingBoy {
 
-    private final ParkingLot parkingLot;
+    private List<ParkingLot> parkingLots;
 
-    public ParkingBoy(ParkingLot parkingLot){
-        this.parkingLot = parkingLot;
+    public ParkingBoy(List<ParkingLot> parkingLots){
+        this.parkingLots = parkingLots;
     }
 
     public Ticket parkCar(Car car) throws NotEnoughPositionException{

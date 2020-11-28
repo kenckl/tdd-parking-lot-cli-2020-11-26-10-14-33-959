@@ -16,7 +16,7 @@ public class ParkingLot {
     }
 
     public Ticket park(Car car) throws NotEnoughPositionException{
-        if (isFullCapacity())
+        if (this.getAvailableSpace()<=0)
             throw new NotEnoughPositionException();
         Ticket ticket = new Ticket();
         ticketCarMapping.put(ticket,car);
@@ -32,7 +32,8 @@ public class ParkingLot {
         throw new UnrecognizedParkingTicketException();
     }
 
-    private boolean isFullCapacity() {
-        return this.capacity <= ticketCarMapping.size();
+
+    public int getAvailableSpace(){
+        return capacity - ticketCarMapping.size();
     }
 }

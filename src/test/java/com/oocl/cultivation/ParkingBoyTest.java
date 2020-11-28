@@ -1,6 +1,10 @@
 package com.oocl.cultivation;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingBoyTest {
@@ -113,5 +117,28 @@ class ParkingBoyTest {
             parkingBoy.parkCar(car);
         }, "Not Enough Position");
 
+    }
+
+    @Test
+    void should_park_first_parking_lot_return_car_ticket_when_park_two_cars_given_both_lots_have_capacity() throws NotEnoughPositionException{
+        //given
+        Car car1 = new Car();
+        Car car2 = new Car();
+        ParkingLot parkingLot1 = new ParkingLot(2);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+
+        //when
+        parkingBoy.parkCar(car1);
+        parkingBoy.parkCar(car2);
+        Ticket ticket = parkingBoy.parkCar(car1);
+
+        //then
+        assertEquals(0,parkingLot1.getAvailableSpace());
+        assertEquals(1,parkingLot2.getAvailableSpace());
+        assertNotNull(ticket);
     }
 }
