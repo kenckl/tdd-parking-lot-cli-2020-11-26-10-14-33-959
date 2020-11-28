@@ -59,12 +59,12 @@ class ParkingBoyTest {
         Ticket ticket = parkingBoy.parkCar(car);
 
         //WHEN
-        UnrecognizedParkingTicketException unrecogniedTicket = assertThrows(UnrecognizedParkingTicketException.class, () -> {
+        UnrecognizedParkingTicketException unrecognizedTicket = assertThrows(UnrecognizedParkingTicketException.class, () -> {
             Car actualCar = parkingBoy.fetchCar(ticket);
         });
 
         //THEN
-        assertEquals("Unrecognized Parking Ticket", unrecogniedTicket.getLocalizedMessage());
+        assertEquals("Unrecognized Parking Ticket", unrecognizedTicket.getLocalizedMessage());
     }
 
     @Test
