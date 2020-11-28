@@ -85,17 +85,20 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_null_when_fetching_given_parking_ticket_not_parked_in_parking_lot() throws NotEnoughPositionException, UnrecognizedParkingTicketException{
+    void should_return_UnrecognizedParkingTicketException_when_fetching_given_parking_lot_invalid_ticket() throws UnrecognizedParkingTicketException, NotEnoughPositionException{
         //GIVEN
-        ParkingLot parkingLot = new ParkingLot(10);
+        ParkingLot parkingLot = new ParkingLot(1);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
-        Ticket ticket = new Ticket();
+        Car car = new Car();
+        Ticket ticket = parkingBoy.parkCar(car);
 
         //WHEN
-        Car car = parkingBoy.fetchCar(ticket);
+        UnrecognizedParkingTicketException unrecognizedTicket = assertThrows(UnrecognizedParkingTicketException.class, () -> {
+            Car actualCar = parkingBoy.fetchCar(ticket);
+        });
 
         //THEN
-        assertNull(car);
+        assertEquals("Unrecognized Parking Target", unrecognizedTicket.getLocalizedMessage());
     }
 
     @Test
