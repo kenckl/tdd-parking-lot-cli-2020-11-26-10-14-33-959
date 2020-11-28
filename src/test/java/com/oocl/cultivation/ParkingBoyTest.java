@@ -34,7 +34,7 @@ class ParkingBoyTest {
         Car actualCar = parkingBoy.fetchCar(ticket);
 
         //THEN
-        assertEquals(car, actualCar);
+        assertSame(car,actualCar);
     }
 
     @Test
