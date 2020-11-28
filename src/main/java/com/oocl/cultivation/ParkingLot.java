@@ -10,21 +10,13 @@ public class ParkingLot {
     private int capacity;
     private Map<Ticket, Car> ticketCarMapping;
 
-    public ParkingLot(){
-        capacity = 10;
-    }
-
     public ParkingLot(int Capacity){
         this.capacity = capacity;
         ticketCarMapping = new HashMap<>();
     }
 
-    public int getCapacity(){
-        return capacity;
-    }
-
     public Ticket park(Car car) throws NotEnoughPositionException{
-        if (!hasCapacity())
+        if (isFullCapacity())
             throw new NotEnoughPositionException();
         Ticket ticket = new Ticket();
         ticketCarMapping.put(ticket,car);
@@ -40,7 +32,7 @@ public class ParkingLot {
         throw new UnrecognizedParkingTicketException();
     }
 
-    private boolean hasCapacity() {
-        return ticketCarMapping.size() < capacity;
+    private boolean isFullCapacity() {
+        return this.capacity <= ticketCarMapping.size();
     }
 }
