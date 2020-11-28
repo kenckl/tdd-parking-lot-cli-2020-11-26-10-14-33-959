@@ -44,10 +44,6 @@ public class ParkingLot {
         return ticketCarMapping;
     }
 
-    public int countEmpty(){
-        return capacity - ticketCarMapping.size();
-    }
-
     public int getMapping(){
         return ticketCarMapping.size();
     }
