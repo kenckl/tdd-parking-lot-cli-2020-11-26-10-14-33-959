@@ -76,7 +76,7 @@ class ParkingBoyTest {
         //GIVEN
         Car car1 = new Car();
         Car car2 = new Car();
-        ParkingLot parkingLot = new ParkingLot(1);
+        List<ParkingLot> parkingLot = new ArrayList<>();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
 
         //WHEN
@@ -91,7 +91,7 @@ class ParkingBoyTest {
     @Test
     void should_return_UnrecognizedParkingTicketException_when_fetching_given_parking_lot_invalid_ticket() throws UnrecognizedParkingTicketException, NotEnoughPositionException{
         //GIVEN
-        ParkingLot parkingLot = new ParkingLot(1);
+        List<ParkingLot> parkingLot = new ArrayList<>();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Car car = new Car();
         Ticket ticket = parkingBoy.parkCar(car);
