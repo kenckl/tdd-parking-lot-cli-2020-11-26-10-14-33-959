@@ -21,21 +21,18 @@ public class ParkingLot {
     }
 
     public Ticket park(Car car){
-        if (!hasCapacity()){
-            return null;
-        }
         Ticket ticket = new Ticket();
         ticketCarMapping.put(ticket,car);
         return ticket;
-    }
-
-    private boolean hasCapacity() {
-        return (capacity - ticketCarMapping.size()) > 0;
     }
 
     public Car fetch(Ticket ticket) {
         Car car = ticketCarMapping.get(ticket);
         ticketCarMapping.remove(ticket);
         return car;
+    }
+
+    private boolean hasCapacity() {
+        return capacity == ticketCarMapping.size();
     }
 }

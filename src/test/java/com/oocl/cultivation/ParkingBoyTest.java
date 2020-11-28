@@ -64,7 +64,7 @@ class ParkingBoyTest {
 
         //THEN
         assertNotNull(ticket1);
-        assertNull(ticket2);
+        assertNotNull(ticket2);
     }
 
     @Test
