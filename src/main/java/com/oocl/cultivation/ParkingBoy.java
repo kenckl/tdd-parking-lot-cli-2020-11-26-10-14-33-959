@@ -1,4 +1,5 @@
 package com.oocl.cultivation;
+import com.oocl.cultivation.NotEnoughPositionException;
 
 public class ParkingBoy {
 
@@ -8,7 +9,7 @@ public class ParkingBoy {
         this.parkingLot = parkingLot;
     }
 
-    public Ticket parkCar(Car car){
+    public Ticket parkCar(Car car) throws NotEnoughPositionException{
         return parkingLot.park(car);
     }
 

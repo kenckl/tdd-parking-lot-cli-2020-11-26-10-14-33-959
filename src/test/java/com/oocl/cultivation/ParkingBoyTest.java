@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingBoyTest {
     @Test
-    void should_return_parking_ticket_when_parking_given_parking_boy_park() {
+    void should_return_parking_ticket_when_parking_given_parking_boy_park() throws NotEnoughPositionException{
         //GIVEN
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -19,7 +19,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_correct_car_when_fetch_car_given_parking_ticket() {
+    void should_return_correct_car_when_fetch_car_given_parking_ticket() throws NotEnoughPositionException{
         //GIVEN
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -34,7 +34,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_multiple_tickets_when_parking_multiple_cars_given_parking_lot_with_multiple_capacity() {
+    void should_return_multiple_tickets_when_parking_multiple_cars_given_parking_lot_with_multiple_capacity() throws NotEnoughPositionException{
         //GIVEN
         Car car1 = new Car();
         Car car2 = new Car();
@@ -51,7 +51,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_only_one_ticket_when_parking_multiple_cars_given_parking_lot_with_one_capacity() {
+    void should_return_only_one_ticket_when_parking_multiple_cars_given_parking_lot_with_one_capacity() throws NotEnoughPositionException{
         //GIVEN
         Car car1 = new Car();
         Car car2 = new Car();
@@ -68,7 +68,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_null_when_fetching_given_parking_ticket_not_parked_in_parking_lot() {
+    void should_return_null_when_fetching_given_parking_ticket_not_parked_in_parking_lot() throws NotEnoughPositionException{
         //GIVEN
         ParkingLot parkingLot = new ParkingLot(10);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -81,5 +81,19 @@ class ParkingBoyTest {
         assertNull(car);
     }
 
+    @Test
+    void should_return_NotEnoughPostionExceptionn_when_parking_given_full_capacity() throws NotEnoughPositionException{
+        //GIVEN
+        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car = new Car();
 
+        //WHEN
+
+        //THEN
+        assertThrows(NotEnoughPositionException.class, () -> {
+            parkingBoy.parkCar(car);
+        }, "Not Enough Position");
+
+    }
 }

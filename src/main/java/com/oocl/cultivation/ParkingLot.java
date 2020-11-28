@@ -1,12 +1,14 @@
 package com.oocl.cultivation;
 
+import com.oocl.cultivation.NotEnoughPositionException;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingLot {
 
     private int capacity;
-    private final Map<Ticket, Car> ticketCarMapping = new HashMap<>();
+    private Map<Ticket, Car> ticketCarMapping;
 
     public ParkingLot(){
         capacity = 10;
@@ -14,13 +16,16 @@ public class ParkingLot {
 
     public ParkingLot(int Capacity){
         this.capacity = capacity;
+        ticketCarMapping = new HashMap<>();
     }
 
     public int getCapacity(){
         return capacity;
     }
 
-    public Ticket park(Car car){
+    public Ticket park(Car car) throws NotEnoughPositionException{
+        if (!hasCapacity())
+            throw new NotEnoughPositionException();
         Ticket ticket = new Ticket();
         ticketCarMapping.put(ticket,car);
         return ticket;
@@ -33,6 +38,6 @@ public class ParkingLot {
     }
 
     private boolean hasCapacity() {
-        return capacity == ticketCarMapping.size();
+        return ticketCarMapping.size() < capacity;
     }
 }
