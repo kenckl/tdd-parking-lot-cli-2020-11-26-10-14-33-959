@@ -51,6 +51,23 @@ class ParkingBoyTest {
     }
 
     @Test
+    void should_return_only_one_ticket_when_parking_multiple_cars_given_parking_lot_with_one_capacity() {
+        //GIVEN
+        Car car1 = new Car();
+        Car car2 = new Car();
+        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+
+        //WHEN
+        Ticket ticket1 = parkingBoy.parkCar(car1);
+        Ticket ticket2 = parkingBoy.parkCar(car2);
+
+        //THEN
+        assertNotNull(ticket1);
+        assertNull(ticket2);
+    }
+
+    @Test
     void should_return_null_when_fetching_given_parking_ticket_not_parked_in_parking_lot() {
         //GIVEN
         ParkingLot parkingLot = new ParkingLot(10);
