@@ -3,6 +3,7 @@ package com.oocl.cultivation;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -140,5 +141,23 @@ class ParkingBoyTest {
         assertEquals(0,parkingLot1.getAvailableSpace());
         assertEquals(1,parkingLot2.getAvailableSpace());
         assertNotNull(ticket);
+    }
+
+    @Test
+    void should_return_ticket_when_parking_given_while_lot_is_fulled(){
+        //given
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot1);
+
+        List<ParkingLot>parkingLotList = Arrays.asList(parkingLot1, parkingLot2);
+        parkingBoy.setParkingLots(parkingLotList);
+
+        //when
+        Ticket ticket = parkingBoy.parkCar(new Car());
+
+        //then
+        assertNotNull(ticket);
+
     }
 }

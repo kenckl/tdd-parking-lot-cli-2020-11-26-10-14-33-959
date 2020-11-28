@@ -2,7 +2,6 @@ package com.oocl.cultivation;
 
 import java.util.List;
 import java.util.ArrayList;
-import com.oocl.cultivation.NotEnoughPositionException;
 
 public class ParkingBoy {
 
@@ -24,11 +23,15 @@ public class ParkingBoy {
 
     public ParkingLot getParkinglot() throws NotEnoughPositionException {
         for (ParkingLot parkingLot: parkingLots){
-            if(parkingLot.getMapping().size() < parkingLot.getCapacity()){
+            if(!parkingLot.isNoCapacity()){
                 return parkingLot;
             }
         }
         throw new NotEnoughPositionException();
+    }
+
+    public void setParkingLots(List<ParkingLot> parkingLotList){
+        this.parkingLots = parkingLotList;
     }
 
     public Car fetchCar(Ticket ticket) throws UnrecognizedParkingTicketException{
