@@ -43,7 +43,7 @@ public class ParkingLot {
     }
 
     public float getRate(){
-        float emptySpace = capacity - ticketCarMapping.size();
+        float emptySpace = getRemainingCapacity();
         return (emptySpace/capacity)*100;
     }
 
