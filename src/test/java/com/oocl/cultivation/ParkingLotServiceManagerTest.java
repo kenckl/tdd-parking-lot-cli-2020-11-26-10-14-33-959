@@ -51,7 +51,7 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_return_exception_when_giving_command_to_fetch_car_given_invalid_ticket(){
+    void should_return_UnrecognizedParkingTicketExcpetion_when_giving_command_to_fetch_car_given_invalid_ticket(){
         //GIVEN
         parkingLotList.add(new ParkingLot());
         ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
@@ -66,5 +66,25 @@ public class ParkingLotServiceManagerTest {
                 ()->{parkingLotServiceManager.fetchingCommand(parkingBoy,ticket);});
         assertSame("Unrecognized Parking Ticket",exception);
 
+    }
+
+    @Test
+    void should_return_NotEnoughPositionException_when_giving_commands_to_park_given_parking_lot_is_full_capacity(){
+        //given
+        Car car1 = new Car();
+        Car car2 = new Car();
+        parkLotList.add(new ParkingLot(1));
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
+        parkingBoy.parkCar(car1);
+
+        List<ParkingBoy> parkingBoys = new ArrayList<>();
+        parkingBoys.add(parkingBoy);
+        parkingLotServiceManager.setManagementList(parkingBoys);
+
+        //WHEN
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                ()->{parkingLotServiceManager.parkingCommand(parkingBoy,car2); });
+        //THEN
+        assertSame("Not Enough Position", exception);
     }
 }
