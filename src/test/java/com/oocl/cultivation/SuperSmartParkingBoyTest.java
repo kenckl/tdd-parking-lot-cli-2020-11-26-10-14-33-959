@@ -82,4 +82,23 @@ public class SuperSmartParkingBoyTest {
 
     }
 
+    @Test
+    public void should_return_NotEnoughPositionException_when_parking_given_car_and_parking_lot_full_capacity(){
+        //GIVEN
+        Car car1 = new Car();
+        Car car2 = new Car();
+        List<ParkingLot> parkingLot = new ArrayList<>();
+        SuperSmartParkingBoy superSmartParkingBoy= new SuperSmartParkingBoy(parkingLot);
+        parkingLot.add(new ParkingLot());
+        superSmartParkingBoy.parkCar(car1);
+
+        //WHEN
+        NotEnoughPositionException exception = assertThrows(NotEnoughPositionException.class,
+                ()->{superSmartParkingBoy.parkCar(car2); });
+
+        //THEN
+        assertSame("Not Enough Position", exception);
+    }
+
+
 }
