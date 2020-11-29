@@ -56,11 +56,30 @@ public class SuperSmartParkingBoyTest {
         //WHEN
         Car actualCar1 = superSmartParkingBoy.fetchCar(ticket1);
         Car actualCar2 = superSmartParkingBoy.fetchCar(ticket2);
-        
+
         //THEN
         assertSame(car1, actualCar1);
         assertSame(car2, actualCar2);
     }
 
+
+    @Test
+    public void should_return_UnrecognizedParkingTicketException_when_fetching_given_reused_ticket(){
+        //GIVEN
+        Car car = new Car();
+        List<ParkingLot> parkingLot = new ArrayList<>();
+        SuperSmartParkingBoy superSmartParkingBoy= new SuperSmartParkingBoy(parkingLot);
+        parkingLot.add(new ParkingLot());
+        Ticket ticket = superSmartParkingBoy.parkCar(car);
+        superSmartParkingBoy.fetchCar(ticket);
+
+        //WHEN
+        UnrecognizedParkingTicketException exception = assertThrows(UnrecognizedParkingTicketException.class,
+                ()->{superSmartParkingBoy.fetchCar(ticket); });
+
+        //THEN
+        assertSame("Unrecognized Parking Ticket", exception);
+
+    }
 
 }
