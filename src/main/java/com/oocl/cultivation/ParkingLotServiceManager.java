@@ -17,4 +17,8 @@ public class ParkingLotServiceManager extends ParkingBoy{
     public List<ParkingBoy> getManageList(){
         return manageList;
     }
+
+    public Ticket parkingCommand(ParkingBoy parkingBoy, Car car){
+        return null;
+    }
 }
