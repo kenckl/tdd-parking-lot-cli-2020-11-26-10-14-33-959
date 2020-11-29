@@ -7,12 +7,10 @@ import java.util.Map;
 
 public class ParkingLot {
 
-    private int capacity;
+    private int capacity = 10;
     private Map<Ticket, Car> ticketCarMapping;
 
-    public ParkingLot(){
-        this(10);
-    }
+    public ParkingLot(){ }
 
     public ParkingLot(int Capacity){
         this.capacity = capacity;
@@ -26,30 +24,27 @@ public class ParkingLot {
     }
 
     public Car fetch(Ticket ticket) throws UnrecognizedParkingTicketException {
-        if (!ticketCarMapping.containsKey(ticket)){
-            throw new UnrecognizedParkingTicketException();
-        }
-
         Car parkedCar = ticketCarMapping.get(ticket);
         ticketCarMapping.remove(ticket);
         return parkedCar;
 
     }
 
-    public boolean isNoCapacity(){
-        return ticketCarMapping.size() >= capacity;
-    }
-
     public Map<Ticket, Car> getTicketCarMapping(){
         return ticketCarMapping;
     }
 
-    public int getMapping(){
+    public int getMapSize(){
         return ticketCarMapping.size();
     }
 
     public int getParkingLotCapacity(){
         return capacity;
+    }
+
+    public float getRate(){
+        float emptySpace = capacity - ticketCarMapping.size();
+        return (emptySpace/capacity)*100;
     }
 
     public int getRemainingCapacity(){

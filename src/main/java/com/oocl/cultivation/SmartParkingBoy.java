@@ -9,7 +9,6 @@ public class SmartParkingBoy extends ParkingBoy{
         super(parkingLot);
     }
 
-
     public void setParkingLot(List<ParkingLot> parkingLots){
         this.parkingLotList = parkingLots;
     }
@@ -19,9 +18,9 @@ public class SmartParkingBoy extends ParkingBoy{
         return lot.park(car);
     }
 
-    public ParkingLot getParkinglot(List<ParkingLot> parkingLotList) {
+    public ParkingLot getParkinglot() {
         return  parkingLotList.stream().max(Comparator.comparing(ParkingLot::getRemainingCapacity))
-                .filter(c -> c.getMapping()!=c.getParkingLotCapacity())
-                .orElseThrow(() -> new FullParkingException("Not enough position."));
+                .filter(c -> c.getMapSize()!=c.getParkingLotCapacity())
+                .orElseThrow(() -> new NotEnoughPositionException());
 }
 

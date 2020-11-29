@@ -1,11 +1,13 @@
 package com.oocl.cultivation;
 
+
 import java.util.List;
 import java.util.ArrayList;
+import com.oocl.cultivation.UnrecognizedParkingTicketException;
 
 public class ParkingBoy {
 
-    private List<ParkingLot> parkingLots;
+    public List<ParkingLot> parkingLots;
 
     public ParkingBoy(ParkingLot parkingLot){
         this.parkingLots = new ArrayList<>();
@@ -21,13 +23,12 @@ public class ParkingBoy {
         return this.parkingLots.park(car);
     }
 
-    public ParkingLot getParkinglot() throws NotEnoughPositionException {
+    public ParkingLot getParkinglot() {
         for (ParkingLot parkingLot: parkingLots){
-            if(!parkingLot.isNoCapacity()){
+            if(parkingLot.getTicketCarMapping().size()!=parkingLot.getParkingLotCapacity()){
                 return parkingLot;
             }
         }
-        throw new NotEnoughPositionException();
     }
 
     public void setParkingLots(List<ParkingLot> parkingLotList){
