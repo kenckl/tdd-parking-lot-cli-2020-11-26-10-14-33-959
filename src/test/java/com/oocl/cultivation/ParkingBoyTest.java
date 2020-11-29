@@ -138,8 +138,8 @@ class ParkingBoyTest {
         Ticket ticket = parkingBoy.parkCar(car1);
 
         //then
-        assertEquals(0,parkingLot1.getAvailableSpace());
-        assertEquals(1,parkingLot2.getAvailableSpace());
+        assertEquals(0,parkingLot1.getRemainingCapacity());
+        assertEquals(1,parkingLot2.getRemainingCapacity());
         assertNotNull(ticket);
     }
 
