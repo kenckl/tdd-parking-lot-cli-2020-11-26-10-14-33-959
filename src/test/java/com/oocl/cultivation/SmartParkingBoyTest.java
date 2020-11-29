@@ -79,7 +79,7 @@ public class SmartParkingBoyTest {
     }
 
     @Test
-    public void should_return_exception_when_fetching_given_used_parking_ticket_to_parking_boy() {
+    public void should_return_UnrecognizedParkingTicketException_when_fetching_given_used_parking_ticket_to_parking_boy() {
         //GIVEN
         Car car1 = new Car();
         List<ParkingLot> parkingLot = new ArrayList<>();
@@ -97,4 +97,21 @@ public class SmartParkingBoyTest {
         assertSame("Unrecognized Parking Ticket.", exception);
     }
 
+    @Test
+    public void should_return_NotEnoughPositionException_when_parking_given_parking_lot_full_capacity() {
+        //GIVEN
+        Car car1 = new Car();
+        Car car2 = new Car();
+        List<ParkingLot> parkingLot = new ArrayList<>();
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLot);
+        parkingLot.add(new ParkingLot(1));
+        smartParkingBoy.parkCar(car1);
+        //when
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> {
+                    smartParkingBoy.park(car2);
+                });
+        //then
+        assertSame("Not Enough Position.", exception);
+    }
 }
