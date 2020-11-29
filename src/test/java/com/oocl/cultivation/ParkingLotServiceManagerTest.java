@@ -11,10 +11,11 @@ public class ParkingLotServiceManagerTest {
     private List<ParkingLot> parkingLot1 = new ArrayList<>();
     private List<ParkingLot> parkingLot2 = new ArrayList<>();
     private List<ParkingLot> parkingLot3 = new ArrayList<>();
+    private List<ParkingLot> parkingLotManager = new ArrayList<>();
     ParkingBoy parkingBoy = new ParkingBoy(parkingLot1);
     ParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLot2);
     ParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLot3);
-    ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager();
+    ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkingLotManager);
 
     @Test
     void should_return_manageList_when_adding_parking_boys_given_manageList(){
@@ -22,14 +23,14 @@ public class ParkingLotServiceManagerTest {
         parkingLot1.add(new ParkingLot());
         parkingLot2.add(new ParkingLot());
         parkingLot3.add(new ParkingLot());
-        List<ParkingBoy> parkingBoyList = Arrays.asList(parkingBoy,smartParkingBoy,superSmartParkingBoy);
-        parkingLotServiceManagerManager.setManageList(parkingBoy);
+        parkingLotManager.add(new ParkingLot());
+        List<ParkingBoy> parkingBoyList = Arrays.asList(parkingBoy, smartParkingBoy, superSmartParkingBoy);
+        parkingLotServiceManager.setManageList(parkingBoyList);
 
         //WHEN
-        List<ParkingBoy> getManageList = parkingManager.getManageList();
+        List<ParkingBoy> getManageList = parkingLotServiceManager.getManageList();
 
         //THEN
         assertNotNull(getManageList);
     }
 }
-
