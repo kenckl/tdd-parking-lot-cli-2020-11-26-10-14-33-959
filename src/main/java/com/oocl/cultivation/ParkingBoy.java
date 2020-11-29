@@ -9,18 +9,13 @@ public class ParkingBoy {
 
     public List<ParkingLot> parkingLots;
 
-    public ParkingBoy(ParkingLot parkingLot){
-        this.parkingLots = new ArrayList<>();
-        this.parkingLots.add(parkingLot);
-    }
-
     public ParkingBoy(List<ParkingLot> parkingLots){
         this.parkingLots = parkingLots;
     }
 
-    public Ticket parkCar(Car car) throws NotEnoughPositionException{
+    public Ticket parkCar(Car car){
         ParkingLot parkingLot = getParkinglot();
-        return this.parkingLots.park(car);
+        return parkingLot.park(car);
     }
 
     public ParkingLot getParkinglot() {
@@ -29,13 +24,14 @@ public class ParkingBoy {
                 return parkingLot;
             }
         }
+        return null;
     }
 
     public void setParkingLots(List<ParkingLot> parkingLotList){
         this.parkingLots = parkingLotList;
     }
 
-    public Car fetchCar(Ticket ticket) throws UnrecognizedParkingTicketException{
+    public Car fetchCar(Ticket ticket) throws UnrecognizedParkingTicketException {
         Car actualCar = new Car();
         if (checkValidTicket(ticket)){
             for (ParkingLot parkingLot : parkingLots){
@@ -47,15 +43,12 @@ public class ParkingBoy {
         }
     }
 
-    public boolean checkValidTicket(Ticket ticket){
+    public boolean checkValidTicket(Ticket ticket) throws UnrecognizedParkingTicketException {
         if (ticket == null){
             throw new UnrecognizedParkingTicketException();
         }
         return parkingLots.stream().anyMatch(parkingLots ->
-                parkingLots.getMapping().containsKey(ticket));
+                parkingLots.getTicketCarMapping().containsKey(ticket));
     }
 
-    public List<ParkingLot> getParkingLots(){
-        return parkingLots;
-    }
 }
