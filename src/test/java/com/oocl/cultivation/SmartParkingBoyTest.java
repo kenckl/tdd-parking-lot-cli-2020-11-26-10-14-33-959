@@ -78,4 +78,23 @@ public class SmartParkingBoyTest {
         assertSame(car2, actualCar2);
     }
 
+    @Test
+    public void should_return_exception_when_fetching_given_used_parking_ticket_to_parking_boy() {
+        //GIVEN
+        Car car1 = new Car();
+        List<ParkingLot> parkingLot = new ArrayList<>();
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLot);
+        parkingLot.add(new ParkingLot());
+        Ticket ticket = smartParkingBoy.park(car1);
+        smartParkingBoy.fetchCar(ticket);
+
+        //WHEN
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> {
+                    smartParkingBoy.fetchCar(ticket);
+                });
+        //THEN
+        assertSame("Unrecognized Parking Ticket.", exception);
+    }
+
 }
