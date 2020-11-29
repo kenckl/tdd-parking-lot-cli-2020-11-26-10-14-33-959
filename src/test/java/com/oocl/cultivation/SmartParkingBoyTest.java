@@ -9,7 +9,7 @@ import java.util.List;
 public class SmartParkingBoyTest {
 
     @Test
-    public void should_return_parking_ticket_when_parking_given_car(){
+    public void should_return_parking_ticket_when_parking_given_car() throws NotEnoughPositionException {
         //GIVEN
         Car car = new Car();
         List<ParkingLot> parkingLot = new ArrayList<>();
@@ -24,7 +24,7 @@ public class SmartParkingBoyTest {
     }
 
     @Test
-    public void should_return_correct_car_when_fetching_given_correct_ticket() throws UnrecognizedParkingTicketException {
+    public void should_return_correct_car_when_fetching_given_correct_ticket() throws UnrecognizedParkingTicketException, NotEnoughPositionException {
         //GIVEN
         Car car = new Car();
         List<ParkingLot> parkingLotList = new ArrayList<>();
@@ -39,7 +39,7 @@ public class SmartParkingBoyTest {
         assertSame(actualCar, car);
     }
 
-    public void should_park_in_lot1_and_return_car_ticket_when_parking_given_lot1_more_capacity_than_lot2(){
+    public void should_park_in_lot1_and_return_car_ticket_when_parking_given_lot1_more_capacity_than_lot2() throws NotEnoughPositionException {
         //GIVEN
         Car car1 = new Car();
         Car car2 = new Car();
@@ -59,7 +59,7 @@ public class SmartParkingBoyTest {
     }
 
     @Test
-    public void should_return_correct_car_when_fetching_given_multiple_tickets() throws UnrecognizedParkingTicketException {
+    public void should_return_correct_car_when_fetching_given_multiple_tickets() throws UnrecognizedParkingTicketException, NotEnoughPositionException {
         //GIVEN
         Car car1 = new Car();
         Car car2 = new Car();
@@ -79,7 +79,7 @@ public class SmartParkingBoyTest {
     }
 
     @Test
-    public void should_return_UnrecognizedParkingTicketException_when_fetching_given_used_parking_ticket_to_parking_boy() throws UnrecognizedParkingTicketException {
+    public void should_return_UnrecognizedParkingTicketException_when_fetching_given_used_parking_ticket_to_parking_boy() throws UnrecognizedParkingTicketException, NotEnoughPositionException {
         //GIVEN
         Car car1 = new Car();
         List<ParkingLot> parkingLot = new ArrayList<>();
@@ -98,7 +98,7 @@ public class SmartParkingBoyTest {
     }
 
     @Test
-    public void should_return_NotEnoughPositionException_when_parking_given_parking_lot_full_capacity() {
+    public void should_return_NotEnoughPositionException_when_parking_given_parking_lot_full_capacity() throws NotEnoughPositionException {
         //GIVEN
         Car car1 = new Car();
         Car car2 = new Car();

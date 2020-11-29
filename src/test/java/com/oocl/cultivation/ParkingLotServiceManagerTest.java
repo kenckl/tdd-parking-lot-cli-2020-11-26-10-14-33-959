@@ -12,10 +12,12 @@ public class ParkingLotServiceManagerTest {
     private List<ParkingLot> parkingLotForSmartParkingBoy = new ArrayList<>();
     private List<ParkingLot> parkingLotForSuperSmartPackingBoy = new ArrayList<>();
     private List<ParkingLot> parkingLotManager = new ArrayList<>();
-    ParkingBoy parkingBoy = new ParkingBoy(parkingLotForParkingBoy);
-    ParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLotForSmartParkingBoy);
-    ParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLotForSuperSmartPackingBoy);
-    ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkingLotManager);
+    private List<ParkingLot> parkingLotList = new ArrayList<>();
+    private List<ParkingBoy> parkingBoyList = new ArrayList<>();
+    private ParkingBoy parkingBoy = new ParkingBoy(parkingLotForParkingBoy);
+    private ParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLotForSmartParkingBoy);
+    private ParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLotForSuperSmartPackingBoy);
+    private ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkingLotManager);
 
     @Test
     void should_return_manageList_when_adding_parking_boys_given_manageList(){
@@ -35,7 +37,7 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_return_ticket_when_giving_command_given_parking_boy_manage(){
+    void should_return_ticket_when_giving_command_given_parking_boy_manage() throws NotEnoughPositionException {
         //GIVEN
         parkingLotForParkingBoy.add(new ParkingLot());
         parkingLotForSmartParkingBoy.add(new ParkingLot());
@@ -51,7 +53,7 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_return_UnrecognizedParkingTicketExcpetion_when_giving_command_to_fetch_car_given_invalid_ticket(){
+    void should_return_UnrecognizedParkingTicketExcpetion_when_giving_command_to_fetch_car_given_invalid_ticket() throws UnrecognizedParkingTicketException, NotEnoughPositionException {
         //GIVEN
         parkingLotList.add(new ParkingLot());
         ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
@@ -69,11 +71,11 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_return_NotEnoughPositionException_when_giving_commands_to_park_given_parking_lot_is_full_capacity(){
+    void should_return_NotEnoughPositionException_when_giving_commands_to_park_given_parking_lot_is_full_capacity() throws NotEnoughPositionException {
         //given
         Car car1 = new Car();
         Car car2 = new Car();
-        parkLotList.add(new ParkingLot(1));
+        parkingLotList.add(new ParkingLot(1));
         ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
         parkingBoy.parkCar(car1);
 

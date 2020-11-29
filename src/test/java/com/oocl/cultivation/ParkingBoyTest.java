@@ -144,7 +144,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_ticket_when_parking_given_while_lot_is_fulled(){
+    void should_return_ticket_when_parking_given_while_lot_is_fulled() throws NotEnoughPositionException {
         //given
         Car car = new Car();
         ParkingLot parkingLot1 = new ParkingLot(1);

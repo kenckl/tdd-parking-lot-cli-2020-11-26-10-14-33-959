@@ -13,12 +13,12 @@ import java.util.List;
 public class SuperSmartParkingBoyTest {
 
     @Test
-    public void should_return_a_parking_ticket_when_parking_given_car(){
+    public void should_return_a_parking_ticket_when_parking_given_car() throws NotEnoughPositionException {
         //GIVEN
         Car car = new Car();
         List<ParkingLot> parkingLot = new ArrayList<>();
         parkingLot.add(new ParkingLot());
-        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy();
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLot);
 
         //WHEN
         Ticket ticket = superSmartParkingBoy.parkCar(car);
@@ -28,7 +28,7 @@ public class SuperSmartParkingBoyTest {
     }
 
     @Test
-    public void should_return_a_car_when_fetching_given_a_valid_parking_ticket() {
+    public void should_return_a_car_when_fetching_given_a_valid_parking_ticket() throws UnrecognizedParkingTicketException, NotEnoughPositionException {
         //GIVEN
         Car car = new Car();
         List<ParkingLot> parkingLot = new ArrayList<>();
@@ -44,7 +44,7 @@ public class SuperSmartParkingBoyTest {
     }
 
     @Test
-    public void should_return_correct_car_when_fetching_given_multiple_tickets(){
+    public void should_return_correct_car_when_fetching_given_multiple_tickets() throws UnrecognizedParkingTicketException, NotEnoughPositionException {
         //GIVEN
         Car car1 = new Car();
         Car car2 = new Car();
@@ -64,7 +64,7 @@ public class SuperSmartParkingBoyTest {
 
 
     @Test
-    public void should_return_UnrecognizedParkingTicketException_when_fetching_given_reused_ticket(){
+    public void should_return_UnrecognizedParkingTicketException_when_fetching_given_reused_ticket() throws UnrecognizedParkingTicketException, NotEnoughPositionException {
         //GIVEN
         Car car = new Car();
         List<ParkingLot> parkingLot = new ArrayList<>();
@@ -83,7 +83,7 @@ public class SuperSmartParkingBoyTest {
     }
 
     @Test
-    public void should_return_NotEnoughPositionException_when_parking_given_car_and_parking_lot_full_capacity(){
+    public void should_return_NotEnoughPositionException_when_parking_given_car_and_parking_lot_full_capacity() throws NotEnoughPositionException {
         //GIVEN
         Car car1 = new Car();
         Car car2 = new Car();
@@ -101,7 +101,7 @@ public class SuperSmartParkingBoyTest {
     }
 
     @Test
-    public void should_return_ticket_from_parking_lot2_when_parking_given_lot2_has_more_space_ratio(){
+    public void should_return_ticket_from_parking_lot2_when_parking_given_lot2_has_more_space_ratio() throws UnrecognizedParkingTicketException, NotEnoughPositionException {
         //GIVEN
         Car car1 = new Car();
         Car car2 = new Car();

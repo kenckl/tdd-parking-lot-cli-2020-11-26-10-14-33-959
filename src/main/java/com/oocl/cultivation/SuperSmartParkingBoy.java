@@ -10,11 +10,11 @@ public class SuperSmartParkingBoy extends ParkingBoy {
     }
 
     @Override
-    public ParkingLot getParkinglot(){
+    public ParkingLot getParkinglot() throws NotEnoughPositionException {
         return parkingLots.stream()
                 .filter(parkingLot -> parkingLot.getMapSize() != parkingLot.getParkingLotCapacity())
                 .max(Comparator.comparing(ParkingLot::getRate))
                 .orElseThrow(() -> new NotEnoughPositionException());
     }
-    }
+
 }

@@ -13,12 +13,12 @@ public class ParkingBoy {
         this.parkingLots = parkingLots;
     }
 
-    public Ticket parkCar(Car car){
+    public Ticket parkCar(Car car) throws NotEnoughPositionException {
         ParkingLot parkingLot = getParkinglot();
         return parkingLot.park(car);
     }
 
-    public ParkingLot getParkinglot() {
+    public ParkingLot getParkinglot() throws NotEnoughPositionException {
         for (ParkingLot parkingLot: parkingLots){
             if(parkingLot.getTicketCarMapping().size()!=parkingLot.getParkingLotCapacity()){
                 return parkingLot;
