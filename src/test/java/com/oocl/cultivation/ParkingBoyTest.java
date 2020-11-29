@@ -146,11 +146,11 @@ class ParkingBoyTest {
     @Test
     void should_return_ticket_when_parking_given_while_lot_is_fulled(){
         //given
-        ParkingLot parkingLot1 = new ParkingLot();
-        ParkingLot parkingLot2 = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot1);
-
-        List<ParkingLot>parkingLotList = Arrays.asList(parkingLot1, parkingLot2);
+        Car car = new Car();
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(5);
+        List<ParkingLot> parkingLotList = Arrays.asList(parkingLot1, parkingLot2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
         parkingBoy.setParkingLots(parkingLotList);
 
         //when
@@ -158,6 +158,5 @@ class ParkingBoyTest {
 
         //then
         assertNotNull(ticket);
-
     }
 }

@@ -24,13 +24,13 @@ public class SmartParkingBoyTest {
     }
 
     @Test
-    public void should_return_correct_car_when_fetching_given_correct_ticket(){
+    public void should_return_correct_car_when_fetching_given_correct_ticket() throws UnrecognizedParkingTicketException {
         //GIVEN
         Car car = new Car();
-        List<ParkingLot> parkingLot = new ArrayList<>();
-        parkingLot.add(new ParkingLot(10));
-        ParkingBoy parkingBoy = new SmartParkingBoy(parkingLot);
-        Ticket ticket = parkingBoy.park(car);
+        List<ParkingLot> parkingLotList = new ArrayList<>();
+        parkingLotList.add(new ParkingLot(10));
+        ParkingBoy parkingBoy = new SmartParkingBoy(parkingLotList);
+        Ticket ticket = parkingBoy.parkCar(car);
 
         //WHEN
         Car actualCar = parkingBoy.fetchCar(ticket);
@@ -39,7 +39,7 @@ public class SmartParkingBoyTest {
         assertSame(actualCar, car);
     }
 
-    public void should_park_in_lot1_and_return_car_ticket_when_parking_given_lot1_more_capacity_than_lot2(){_
+    public void should_park_in_lot1_and_return_car_ticket_when_parking_given_lot1_more_capacity_than_lot2(){
         //GIVEN
         Car car1 = new Car();
         Car car2 = new Car();
@@ -59,15 +59,15 @@ public class SmartParkingBoyTest {
     }
 
     @Test
-    public void should_return_correct_car_when_fetching_given_multiple_tickets(){
+    public void should_return_correct_car_when_fetching_given_multiple_tickets() throws UnrecognizedParkingTicketException {
         //GIVEN
         Car car1 = new Car();
         Car car2 = new Car();
         List<ParkingLot> parkingLot = new ArrayList<>();
         parkingLot.add(new ParkingLot());
         SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLot);
-        Ticket t1 = smartParkingBoy.park(car1);
-        Ticket t2 = smartParkingBoy.park(car2);
+        Ticket t1 = smartParkingBoy.parkCar(car1);
+        Ticket t2 = smartParkingBoy.parkCar(car2);
 
         //WHEN
         Car actualCar1 = smartParkingBoy.fetchCar(t1);
@@ -79,13 +79,13 @@ public class SmartParkingBoyTest {
     }
 
     @Test
-    public void should_return_UnrecognizedParkingTicketException_when_fetching_given_used_parking_ticket_to_parking_boy() {
+    public void should_return_UnrecognizedParkingTicketException_when_fetching_given_used_parking_ticket_to_parking_boy() throws UnrecognizedParkingTicketException {
         //GIVEN
         Car car1 = new Car();
         List<ParkingLot> parkingLot = new ArrayList<>();
         SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLot);
         parkingLot.add(new ParkingLot());
-        Ticket ticket = smartParkingBoy.park(car1);
+        Ticket ticket = smartParkingBoy.parkCar(car1);
         smartParkingBoy.fetchCar(ticket);
 
         //WHEN
@@ -109,7 +109,7 @@ public class SmartParkingBoyTest {
         //when
         RuntimeException exception = assertThrows(RuntimeException.class,
                 () -> {
-                    smartParkingBoy.park(car2);
+                    smartParkingBoy.parkCar(car2);
                 });
         //then
         assertSame("Not Enough Position.", exception);
