@@ -100,5 +100,27 @@ public class SuperSmartParkingBoyTest {
         assertSame("Not Enough Position", exception);
     }
 
+    @Test
+    public void should_return_ticket_from_parking_lot2_when_parking_given_lot2_has_more_space_ratio(){
+        //GIVEN
+        Car car1 = new Car();
+        Car car2 = new Car();
+        ParkingLot parkingLot1 = new ParkingLot(2);
+        ParkingLot parkingLot2 = new ParkingLot(3);
+        List<ParkingLot> parkingLotList = new ArrayList<>();
+        parkingLotList.add(parkingLot1);
+        parkingLotList.add(parkingLot2);
+        SuperSmartParkingBoy superSmartParkingBoy= new SuperSmartParkingBoy(parkingLotList);
+
+        //WHEN
+        superSmartParkingBoy.parkCar(car1);
+        Ticket ticket2 = superSmartParkingBoy.parkCar(car2);
+
+
+        //THEN
+        assertNotNull(ticket2);
+        assertEquals(car2, parkingLot2.fetch(ticket2));
+    }
+
 
 }
