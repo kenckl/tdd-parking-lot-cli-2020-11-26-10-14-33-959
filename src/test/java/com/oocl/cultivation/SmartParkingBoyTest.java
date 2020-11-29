@@ -39,6 +39,25 @@ public class SmartParkingBoyTest {
         assertSame(actualCar, car);
     }
 
+    public void should_park_in_lot1_and_return_car_ticket_when_parking_given_lot1_more_capacity_than_lot2(){_
+        //GIVEN
+        Car car1 = new Car();
+        Car car2 = new Car();
+        List<ParkingLot> parkingLot = new ArrayList<>();
+        ParkingLot parkingLot1 = new ParkingLot(2);
+        ParkingLot parkingLot2 = new ParkingLot(2);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLot);
+        parkingLot.add(parkingLot1);
+        parkingLot.add(parkingLot2);
+        smartParkingBoy.parkCar(car1);
+
+        //WHEN
+        smartParkingBoy.parkCar(car2);
+
+        //THEN
+        assertEquals(1, parkingLot2.getTicketCarMapping().size());
+    }
+
     @Test
     public void should_return_correct_car_when_fetching_given_multiple_tickets(){
         //GIVEN
