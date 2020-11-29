@@ -7,6 +7,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SuperSmartParkingBoyTest {
 
     @Test
@@ -14,10 +17,11 @@ public class SuperSmartParkingBoyTest {
         //GIVEN
         Car car = new Car();
         List<ParkingLot> parkingLot = new ArrayList<>();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
-
+        parkingLot.add(new ParkingLot());
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy();
+        
         //WHEN
-        Ticket ticket = parkingBoy.parkCar(car);
+        Ticket ticket = superSmartParkingBoy.parkCar(car);
 
         //THEN
         assertNotNull(ticket);
