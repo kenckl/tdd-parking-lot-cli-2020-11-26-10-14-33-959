@@ -29,18 +29,37 @@ public class SuperSmartParkingBoyTest {
 
     @Test
     public void should_return_a_car_when_fetching_given_a_valid_parking_ticket() {
-        //given
+        //GIVEN
         Car car = new Car();
         List<ParkingLot> parkingLot = new ArrayList<>();
         SuperSmartParkingBoy superSmartParkingBoy= new SuperSmartParkingBoy(parkingLot);
         parkingLot.add(new ParkingLot());
         Ticket ticket = superSmartParkingBoy.parkCar(car);
 
-        //when
+        //WHEN
         Car fetchedCar = superSmartParkingBoy.fetchCar(ticket);
 
-        //then
+        //THEN
         assertSame(car, fetchedCar);
+    }
+
+    @Test
+    public void should_return_correct_car_when_fetching_given_multiple_tickets(){
+        //GIVEN
+        Car car1 = new Car();
+        Car car2 = new Car();
+        List<ParkingLot> parkingLot = new ArrayList<>();
+        SuperSmartParkingBoy superSmartParkingBoy= new SuperSmartParkingBoy(parkingLot);
+        Ticket ticket1 = superSmartParkingBoy.parkCar(car1);
+        Ticket ticket2 = superSmartParkingBoy.parkCar(car2);
+
+        //WHEN
+        Car actualCar1 = superSmartParkingBoy.fetchCar(ticket1);
+        Car actualCar2 = superSmartParkingBoy.fetchCar(ticket2);
+        
+        //THEN
+        assertSame(car1, actualCar1);
+        assertSame(car2, actualCar2);
     }
 
 
