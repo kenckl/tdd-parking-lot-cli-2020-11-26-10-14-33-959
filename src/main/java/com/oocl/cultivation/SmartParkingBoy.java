@@ -6,21 +6,23 @@ import java.util.Comparator;
 
 public class SmartParkingBoy extends ParkingBoy{
     private List<ParkingLot> parkingLotList;
-    public SmartParkingBoy(ParkingLot parkingLot){
+    public SmartParkingBoy(List<ParkingLot> parkingLot){
         super(parkingLot);
     }
 
-    public SmartParkingBoy(List<ParkingLot> parkingLotList){
-        super(parkingLotList);
-    }
 
     public void setParkingLot(List<ParkingLot> parkingLots){
         this.parkingLotList = parkingLots;
     }
 
-    public ParkingLot getParkingLot(){
-        return parkingLotList.stream().max(Comparator.comparing(ParkingLot::countEmpty))
-                .orElseThrow(()->new NotEnoughPositionException());
-
+    public Ticket park(Car car){
+        ParkingLot lot= getParkinglot(super.getParkingLots());
+        return lot.park(car);
     }
+
+    public ParkingLot getParkinglot(List<ParkingLot> parkingLotList) {
+        return  parkingLotList.stream().max(Comparator.comparing(ParkingLot::getEmpty))
+                .filter(c -> c.getTickatCarMapSize()!=c.getCapacity())
+                .orElseThrow(() -> new FullParkingException("Not enough position."));
 }
+
