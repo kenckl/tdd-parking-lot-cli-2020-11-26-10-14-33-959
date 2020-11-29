@@ -49,4 +49,22 @@ public class ParkingLotServiceManagerTest {
         //THEN
         assertNotNull(ticket);
     }
+
+    @Test
+    void should_return_exception_when_giving_command_to_fetch_car_given_invalid_ticket(){
+        //GIVEN
+        parkingLotList.add(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
+        Ticket ticket = parkingBoy.parkCar(car);
+        parkingBoy.fetchCar(ticket);
+        parkingBoyList.add(parkingBoy);
+
+        //WHEN
+
+        //THEN
+        UnrecognizedParkingTicketException exception = assertThrows(UnrecognizedParkingTicketException.class,
+                ()->{parkingLotServiceManager.fetchingCommand(parkingBoy,ticket);});
+        assertSame("Unrecognized Parking Ticket",exception);
+
+    }
 }
