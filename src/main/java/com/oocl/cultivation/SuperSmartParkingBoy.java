@@ -1,5 +1,6 @@
 package com.oocl.cultivation;
 
+import com.oocl.cultivation.NotEnoughPositionException;
 import java.util.Comparator;
 import java.util.List;
 
@@ -9,9 +10,10 @@ public class SuperSmartParkingBoy extends ParkingBoy {
     }
 
     @Override
-    public ParkingLot getParkingLot(){
-        return parkingLots.stream().max(Comparator.comparing(ParkingLot::getRate))
-                .filter(c -> c.getMapSize() != c.getParkingLotCapacity())
+    public ParkingLot getParkinglot(){
+        return parkingLots.stream()
+                .filter(parkingLot -> parkingLot.getMapSize() != parkingLot.getParkingLotCapacity())
+                .max(Comparator.comparing(ParkingLot::getRate))
                 .orElseThrow(() -> new NotEnoughPositionException());
     }
     }

@@ -13,9 +13,11 @@ public class SmartParkingBoy extends ParkingBoy{
 
     @Override
     public ParkingLot getParkinglot() {
-        return  parkingLots.stream()
-                .filter(parkingLot -> parkingLot.getMapSize()!=parkingLot.getParkingLotCapacity())
+        return parkingLots.stream()
+                .filter(parkingLot -> parkingLot.getMapSize() != parkingLot.getParkingLotCapacity())
                 .max(Comparator.comparing(ParkingLot::getRemainingCapacity))
                 .orElseThrow(() -> new NotEnoughPositionException());
+
+    }
 }
 
