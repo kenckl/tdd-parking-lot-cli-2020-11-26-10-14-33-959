@@ -1,6 +1,5 @@
 package com.oocl.cultivation;
 
-import com.oocl.cultivation.NotEnoughPositionException;
 import java.util.List;
 import java.util.Comparator;
 
@@ -21,8 +20,8 @@ public class SmartParkingBoy extends ParkingBoy{
     }
 
     public ParkingLot getParkinglot(List<ParkingLot> parkingLotList) {
-        return  parkingLotList.stream().max(Comparator.comparing(ParkingLot::getEmpty))
-                .filter(c -> c.getTickatCarMapSize()!=c.getCapacity())
+        return  parkingLotList.stream().max(Comparator.comparing(ParkingLot::getRemainingCapacity))
+                .filter(c -> c.getMapping()!=c.getParkingLotCapacity())
                 .orElseThrow(() -> new FullParkingException("Not enough position."));
 }
 
