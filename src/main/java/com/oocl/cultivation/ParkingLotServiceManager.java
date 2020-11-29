@@ -22,7 +22,7 @@ public class ParkingLotServiceManager extends ParkingBoy{
         return parkingBoy.parkCar(car);
     }
 
-    public Car fetchingCommand(ParkingBoy parkingBoy, Ticket ticket){
+    public Car fetchingCommand(ParkingBoy parkingBoy, Ticket ticket) throws UnrecognizedParkingTicketException {
         return parkingBoy.fetchCar(ticket);
     }
 
