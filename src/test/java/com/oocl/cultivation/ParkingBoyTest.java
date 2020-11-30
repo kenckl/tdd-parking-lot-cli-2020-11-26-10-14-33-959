@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingBoyTest {
     @Test
-    void should_return_parking_ticket_when_parking_given_parking_boy_park() throws NotEnoughPositionException{
+    void should_return_parking_ticket_when_parking_given_parking_boy_park() throws NotEnoughPositionException {
         //GIVEN
         Car car = new Car();
         List<ParkingLot> parkingLot = new ArrayList<>();
@@ -24,7 +24,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_correct_car_when_fetch_car_given_parking_ticket() throws NotEnoughPositionException, UnrecognizedParkingTicketException{
+    void should_return_correct_car_when_fetch_car_given_parking_ticket() throws NotEnoughPositionException, UnrecognizedParkingTicketException {
         //GIVEN
         Car car = new Car();
         List<ParkingLot> parkingLot = new ArrayList<>();
@@ -35,11 +35,11 @@ class ParkingBoyTest {
         Car actualCar = parkingBoy.fetchCar(ticket);
 
         //THEN
-        assertSame(car,actualCar);
+        assertSame(car, actualCar);
     }
 
     @Test
-    void should_return_multiple_tickets_when_parking_multiple_cars_given_parking_lot_with_multiple_capacity() throws NotEnoughPositionException{
+    void should_return_multiple_tickets_when_parking_multiple_cars_given_parking_lot_with_multiple_capacity() throws NotEnoughPositionException {
         //GIVEN
         Car car1 = new Car();
         Car car2 = new Car();
@@ -56,7 +56,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_UnrecognizedParkingTicketException_when_fetch_car_given_parking_lot_car_reused_ticket() throws UnrecognizedParkingTicketException, NotEnoughPositionException{
+    void should_return_UnrecognizedParkingTicketException_when_fetch_car_given_parking_lot_car_reused_ticket() throws UnrecognizedParkingTicketException, NotEnoughPositionException {
         //GIVEN
         Car car = new Car();
         List<ParkingLot> parkingLot = new ArrayList<>();
@@ -73,7 +73,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_only_one_ticket_when_parking_multiple_cars_given_parking_lot_with_one_capacity() throws NotEnoughPositionException{
+    void should_return_only_one_ticket_when_parking_multiple_cars_given_parking_lot_with_one_capacity() throws NotEnoughPositionException {
         //GIVEN
         Car car1 = new Car();
         Car car2 = new Car();
@@ -90,7 +90,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_UnrecognizedParkingTicketException_when_fetching_given_parking_lot_invalid_ticket() throws UnrecognizedParkingTicketException, NotEnoughPositionException{
+    void should_return_UnrecognizedParkingTicketException_when_fetching_given_parking_lot_invalid_ticket() throws UnrecognizedParkingTicketException, NotEnoughPositionException {
         //GIVEN
         List<ParkingLot> parkingLot = new ArrayList<>();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -107,7 +107,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_NotEnoughPostionExceptionn_when_parking_given_full_capacity() throws NotEnoughPositionException{
+    void should_return_NotEnoughPostionExceptionn_when_parking_given_full_capacity() throws NotEnoughPositionException {
         //GIVEN
         List<ParkingLot> parkingLot = new ArrayList<>();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -121,7 +121,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_park_first_parking_lot_return_car_ticket_when_park_two_cars_given_both_lots_have_capacity() throws NotEnoughPositionException{
+    void should_park_first_parking_lot_return_car_ticket_when_park_two_cars_given_both_lots_have_capacity() throws NotEnoughPositionException {
         //given
         Car car1 = new Car();
         Car car2 = new Car();
@@ -138,8 +138,8 @@ class ParkingBoyTest {
         Ticket ticket = parkingBoy.parkCar(car1);
 
         //then
-        assertEquals(0,parkingLot1.getRemainingCapacity());
-        assertEquals(1,parkingLot2.getRemainingCapacity());
+        assertEquals(0, parkingLot1.getRemainingCapacity());
+        assertEquals(1, parkingLot2.getRemainingCapacity());
         assertNotNull(ticket);
     }
 

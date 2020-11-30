@@ -1,7 +1,7 @@
 package com.oocl.cultivation;
 
 public class NotEnoughPositionException extends Throwable {
-    public NotEnoughPositionException(){
+    public NotEnoughPositionException() {
         super("Not Enough Position");
     }
 }

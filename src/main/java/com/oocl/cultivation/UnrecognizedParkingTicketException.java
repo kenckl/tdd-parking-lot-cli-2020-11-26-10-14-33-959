@@ -1,7 +1,7 @@
 package com.oocl.cultivation;
 
 public class UnrecognizedParkingTicketException extends Throwable {
-    public UnrecognizedParkingTicketException(){
+    public UnrecognizedParkingTicketException() {
         super("Unrecognized Parking Ticket");
     }
 }

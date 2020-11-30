@@ -32,7 +32,7 @@ public class SuperSmartParkingBoyTest {
         //GIVEN
         Car car = new Car();
         List<ParkingLot> parkingLot = new ArrayList<>();
-        SuperSmartParkingBoy superSmartParkingBoy= new SuperSmartParkingBoy(parkingLot);
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLot);
         parkingLot.add(new ParkingLot());
         Ticket ticket = superSmartParkingBoy.parkCar(car);
 
@@ -49,7 +49,7 @@ public class SuperSmartParkingBoyTest {
         Car car1 = new Car();
         Car car2 = new Car();
         List<ParkingLot> parkingLot = new ArrayList<>();
-        SuperSmartParkingBoy superSmartParkingBoy= new SuperSmartParkingBoy(parkingLot);
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLot);
         Ticket ticket1 = superSmartParkingBoy.parkCar(car1);
         Ticket ticket2 = superSmartParkingBoy.parkCar(car2);
 
@@ -68,14 +68,16 @@ public class SuperSmartParkingBoyTest {
         //GIVEN
         Car car = new Car();
         List<ParkingLot> parkingLot = new ArrayList<>();
-        SuperSmartParkingBoy superSmartParkingBoy= new SuperSmartParkingBoy(parkingLot);
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLot);
         parkingLot.add(new ParkingLot());
         Ticket ticket = superSmartParkingBoy.parkCar(car);
         superSmartParkingBoy.fetchCar(ticket);
 
         //WHEN
         UnrecognizedParkingTicketException exception = assertThrows(UnrecognizedParkingTicketException.class,
-                ()->{superSmartParkingBoy.fetchCar(ticket); });
+                () -> {
+                    superSmartParkingBoy.fetchCar(ticket);
+                });
 
         //THEN
         assertSame("Unrecognized Parking Ticket", exception);
@@ -88,13 +90,15 @@ public class SuperSmartParkingBoyTest {
         Car car1 = new Car();
         Car car2 = new Car();
         List<ParkingLot> parkingLot = new ArrayList<>();
-        SuperSmartParkingBoy superSmartParkingBoy= new SuperSmartParkingBoy(parkingLot);
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLot);
         parkingLot.add(new ParkingLot());
         superSmartParkingBoy.parkCar(car1);
 
         //WHEN
         NotEnoughPositionException exception = assertThrows(NotEnoughPositionException.class,
-                ()->{superSmartParkingBoy.parkCar(car2); });
+                () -> {
+                    superSmartParkingBoy.parkCar(car2);
+                });
 
         //THEN
         assertSame("Not Enough Position", exception);
@@ -110,7 +114,7 @@ public class SuperSmartParkingBoyTest {
         List<ParkingLot> parkingLotList = new ArrayList<>();
         parkingLotList.add(parkingLot1);
         parkingLotList.add(parkingLot2);
-        SuperSmartParkingBoy superSmartParkingBoy= new SuperSmartParkingBoy(parkingLotList);
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLotList);
 
         //WHEN
         superSmartParkingBoy.parkCar(car1);

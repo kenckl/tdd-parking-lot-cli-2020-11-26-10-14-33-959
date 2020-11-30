@@ -42,9 +42,11 @@ public class ParkingLot {
         return capacity;
     }
 
+    // float or double also ok
+    // remove emptySpace variable
     public float getRate(){
         float emptySpace = getRemainingCapacity();
-        return (emptySpace/capacity)*100;
+        return emptySpace/capacity;
     }
 
     public int getRemainingCapacity(){

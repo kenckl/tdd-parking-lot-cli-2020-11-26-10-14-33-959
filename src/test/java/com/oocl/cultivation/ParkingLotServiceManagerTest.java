@@ -1,12 +1,16 @@
 package com.oocl.cultivation;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ParkingLotServiceManagerTest {
+
+    //@BeforeEach
     Car car = new Car();
     private List<ParkingLot> parkingLotForParkingBoy = new ArrayList<>();
     private List<ParkingLot> parkingLotForSmartParkingBoy = new ArrayList<>();
@@ -20,7 +24,7 @@ public class ParkingLotServiceManagerTest {
     private ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkingLotManager);
 
     @Test
-    void should_return_manageList_when_adding_parking_boys_given_manageList(){
+    void should_return_manageList_when_adding_parking_boys_given_manageList() {
         //GIVEN
         parkingLotForParkingBoy.add(new ParkingLot());
         parkingLotForSmartParkingBoy.add(new ParkingLot());
@@ -46,7 +50,7 @@ public class ParkingLotServiceManagerTest {
         parkingLotServiceManager.setManageList(parkingBoyList);
 
         //WHEN
-        Ticket ticket = parkingLotServiceManager.parkingCommand(parkingBoy,car);
+        Ticket ticket = parkingLotServiceManager.parkingCommand(parkingBoy, car);
 
         //THEN
         assertNotNull(ticket);
@@ -64,7 +68,7 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_return_UnrecognizedParkingTicketExcpetion_when_giving_command_to_fetch_car_given_invalid_ticket() throws UnrecognizedParkingTicketException, NotEnoughPositionException {
+    void should_return_UnrecognizedParkingTicketException_when_giving_command_to_fetch_car_given_invalid_ticket() throws UnrecognizedParkingTicketException, NotEnoughPositionException {
         //GIVEN
         parkingLotList.add(new ParkingLot());
         ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
@@ -76,8 +80,10 @@ public class ParkingLotServiceManagerTest {
 
         //THEN
         UnrecognizedParkingTicketException exception = assertThrows(UnrecognizedParkingTicketException.class,
-                ()->{parkingLotServiceManager.fetchingCommand(parkingBoy,ticket);});
-        assertSame("Unrecognized Parking Ticket",exception);
+                () -> {
+                    parkingLotServiceManager.fetchingCommand(parkingBoy, ticket);
+                });
+        assertSame("Unrecognized Parking Ticket", exception);
 
     }
 
@@ -96,7 +102,9 @@ public class ParkingLotServiceManagerTest {
 
         //WHEN
         RuntimeException exception = assertThrows(RuntimeException.class,
-                ()->{parkingLotServiceManager.parkingCommand(parkingBoy,car2); });
+                () -> {
+                    parkingLotServiceManager.parkingCommand(parkingBoy, car2);
+                });
         //THEN
         assertSame("Not Enough Position", exception);
     }

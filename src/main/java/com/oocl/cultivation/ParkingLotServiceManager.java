@@ -3,21 +3,22 @@ package com.oocl.cultivation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParkingLotServiceManager extends ParkingBoy{
+public class ParkingLotServiceManager extends ParkingBoy {
     private List<ParkingBoy> manageList = new ArrayList<>();
 
-    public ParkingLotServiceManager(List<ParkingLot> parkingLotList){
+    public ParkingLotServiceManager(List<ParkingLot> parkingLotList) {
         super(parkingLotList);
     }
 
-    public void setManageList(List<ParkingBoy> parkingBoys){
-        this.manageList=parkingBoys;
+    public void setManageList(List<ParkingBoy> parkingBoys) {
+        this.manageList = parkingBoys;
     }
 
-    public List<ParkingBoy> getManageList(){
+    public List<ParkingBoy> getManageList() {
         return manageList;
     }
 
+    // todo remove parking boy
     public Ticket parkingCommand(ParkingBoy parkingBoy, Car car) throws NotEnoughPositionException {
         return parkingBoy.parkCar(car);
     }
@@ -26,7 +27,7 @@ public class ParkingLotServiceManager extends ParkingBoy{
         return parkingBoy.fetchCar(ticket);
     }
 
-    public void setManagementList(List<ParkingBoy> parkingBoys){
+    public void setManagementList(List<ParkingBoy> parkingBoys) {
         this.manageList = parkingBoys;
     }
 }
