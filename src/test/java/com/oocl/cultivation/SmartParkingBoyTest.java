@@ -39,6 +39,7 @@ public class SmartParkingBoyTest {
         assertSame(actualCar, car);
     }
 
+    @Test
     public void should_park_in_lot1_and_return_car_ticket_when_parking_given_lot1_more_capacity_than_lot2() throws NotEnoughPositionException {
         //GIVEN
         Car car1 = new Car();

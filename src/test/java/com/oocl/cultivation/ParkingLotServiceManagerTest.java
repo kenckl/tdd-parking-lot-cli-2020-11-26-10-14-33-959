@@ -53,6 +53,17 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
+    void should_return_car_when_fetching_given_parking_ticket_to_parking_lot_service_manager() throws NotEnoughPositionException, UnrecognizedParkingTicketException {
+        //given
+        parkingLotManager.add(new ParkingLot());
+        Ticket ticket = parkingLotServiceManager.parkCar(car);
+        //when
+        Car actualCar = parkingLotServiceManager.fetchCar(ticket);
+        //then
+        assertSame(car, actualCar);
+    }
+
+    @Test
     void should_return_UnrecognizedParkingTicketExcpetion_when_giving_command_to_fetch_car_given_invalid_ticket() throws UnrecognizedParkingTicketException, NotEnoughPositionException {
         //GIVEN
         parkingLotList.add(new ParkingLot());
